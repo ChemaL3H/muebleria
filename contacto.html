@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto — Mueblería González</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero {
+      background: var(--azul-oscuro);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    .page-hero h1 { font-size: clamp(26px,4vw,38px); color: var(--blanco); margin-bottom: 8px; }
+    .page-hero p  { color: rgba(255,255,255,0.55); font-size: 15px; }
+
+    .contacto-section {
+      padding: 56px 24px 72px;
+      background: var(--fondo);
+    }
+
+    .contacto-grid {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ── Formulario ── */
+    .contacto-form-card {
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio-lg);
+      padding: 36px;
+      box-shadow: var(--sombra-m);
+    }
+
+    .contacto-form-card h2 {
+      font-size: 22px;
+      color: var(--azul-oscuro);
+      margin-bottom: 6px;
+    }
+
+    .contacto-form-card p.form-desc {
+      font-size: 13px;
+      color: var(--texto-medio);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--texto-medio);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 12px 16px;
+      border: 1.5px solid var(--borde);
+      border-radius: var(--radio);
+      font-size: 14px;
+      color: var(--texto);
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: 'Inter', sans-serif;
+      background: var(--fondo);
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--azul-indigo);
+      background: var(--blanco);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.6;
+    }
+
+    .form-nota {
+      font-size: 12px;
+      color: var(--texto-claro);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+
+    .form-nota svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; stroke: var(--azul-claro); }
+
+    /* ── Info lateral ── */
+    .contacto-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-card {
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio-lg);
+      padding: 24px;
+      box-shadow: var(--sombra-s);
+    }
+
+    .info-card h3 {
+      font-size: 16px;
+      color: var(--azul-oscuro);
+      margin-bottom: 4px;
+    }
+
+    .info-card p {
+      font-size: 13px;
+      color: var(--texto-medio);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--borde);
+      font-size: 14px;
+      color: var(--texto);
+    }
+
+    .info-item:last-child { border-bottom: none; }
+    .info-item svg { width: 18px; height: 18px; stroke: var(--azul-medio); flex-shrink: 0; }
+    .info-item a { color: var(--azul-indigo); text-decoration: none; transition: color 0.2s; }
+    .info-item a:hover { color: var(--azul-oscuro); }
+
+    .social-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: var(--radio);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .social-btn-wa {
+      background: #25D366;
+      color: white;
+    }
+    .social-btn-wa:hover { background: #128C4E; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,211,102,0.35); }
+
+    .social-btn-fb {
+      background: #1877F2;
+      color: white;
+    }
+    .social-btn-fb:hover { background: #0d65d9; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(24,119,242,0.35); }
+
+    .social-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .contacto-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<header id="mainHeader">
+  <div class="header-inner">
+    <a href="index.html" class="header-brand">
+      <img src="logo.webp" alt="Logo" class="header-logo-img" onerror="this.style.display='none'">
+      <div class="header-brand-text">
+        <span class="brand-name">Mueblería <em>González</em></span>
+        <span class="brand-tagline">Artesanía en madera</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <a href="favoritos.html" class="header-icon-btn" title="Mis favoritos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="fav-badge" id="favBadge">0</span>
+      </a>
+      <button class="header-icon-btn" id="authBtn" onclick="toggleAuth()" title="Cuenta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<body>
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer">
+  <div class="drawer-header">
+    <span class="drawer-title">Mueblería <em>González</em></span>
+    <button class="drawer-close" id="drawerClose">✕</button>
+  </div>
+  <div class="drawer-nav">
+    <a href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Inicio
+    </a>
+    <button class="drawer-cat-toggle" id="drawerCatToggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Categorías
+      <svg class="cat-toggle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="drawer-submenu" id="drawerCatSubmenu">
+      <a href="index.html#roperos">Roperos</a>
+      <a href="index.html#tocadores">Tocadores</a>
+      <a href="index.html#recamaras">Recámaras</a>
+      <a href="index.html#cunas">Cunas</a>
+    </div>
+    <div class="drawer-divider"></div>
+    <a href="favoritos.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Mis Favoritos
+    </a>
+    <a href="contacto.html" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Contacto
+    </a>
+    <a href="preguntas.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Preguntas Frecuentes
+    </a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-hero">
+    <h1>Contáctanos</h1>
+    <p>Estamos para ayudarte a encontrar el mueble perfecto</p>
+  </div>
+
+  <section class="contacto-section">
+    <div class="contacto-grid">
+
+      <!-- FORMULARIO -->
+      <div class="contacto-form-card">
+        <h2>Envíanos un mensaje</h2>
+        <p class="form-desc">Completa el formulario y te redirigiremos a WhatsApp con tu mensaje listo para enviar.</p>
+
+        <div class="form-group">
+          <label>Tu nombre *</label>
+          <input type="text" id="contactNombre" placeholder="María García">
+        </div>
+
+        <div class="form-group">
+          <label>Teléfono (opcional)</label>
+          <input type="tel" id="contactTelefono" placeholder="+52 55 1234 5678">
+        </div>
+
+        <div class="form-group">
+          <label>¿En qué te podemos ayudar? *</label>
+          <textarea id="contactMensaje" placeholder="Hola, me interesa saber más sobre sus roperos y si tienen disponibilidad para entrega en..."></textarea>
+        </div>
+
+        <div class="form-nota">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Al presionar el botón, se abrirá WhatsApp con tu mensaje listo. No almacenamos tus datos.
+        </div>
+
+        <button class="btn-whatsapp" onclick="enviarContacto()" style="width:100%;justify-content:center">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Abrir WhatsApp con mi mensaje
+        </button>
+      </div>
+
+      <!-- INFO LATERAL -->
+      <div class="contacto-info">
+        <div class="info-card">
+          <h3>Información de contacto</h3>
+          <p>Visítanos o escríbenos directamente</p>
+          <div>
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Lunes a Domingo<br><strong>11:00 am – 6:00 pm</strong></span>
+            </div>
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+527791023240">+52 779 102 3240</a>
+            </div>
+            <div class="info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              <a href="https://www.facebook.com/share/g/1Xoou8Ftux/" target="_blank">Grupo de Facebook</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>Canales directos</h3>
+          <p>Escríbenos directamente sin formulario</p>
+          <div class="social-btns">
+            <a href="https://wa.me/527791023240" target="_blank" class="social-btn social-btn-wa">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Escribir por WhatsApp
+            </a>
+            <a href="https://www.facebook.com/share/g/1Xoou8Ftux/" target="_blank" class="social-btn social-btn-fb">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Visitar Facebook
+            </a>
+          </div>
+        </div>
+
+        <div class="info-card" style="background:var(--azul-suave);border-color:var(--azul-claro)">
+          <h3 style="color:var(--azul-indigo)">¿Quieres hacer un pedido?</h3>
+          <p>Si ya viste el mueble que buscas, ve al catálogo y usa el botón "Pedir por WhatsApp" directo en cada producto.</p>
+          <a href="index.html#todos" class="btn-secondary" style="margin-top:4px">Ver catálogo</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <p class="brand-name-footer">Mueblería <em>González</em></p>
+      <p>Calidad artesanal y tradición familiar en cada mueble.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="favoritos.html">Mis Favoritos</a></li>
+        <li><a href="preguntas.html">Preguntas Frecuentes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#" onclick="document.getElementById('modalPrivacidad').style.display='flex'; return false;">Política de Privacidad</a></li>
+        <li><a href="mailto:chicohabasoficial@gmail.com">Soporte técnico</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Mueblería González. Todos los derechos reservados.</span>
+    <span>Sitio web por CEGA y colaboradores</span>
+  </div>
+</footer>
+
+<div id="modalPrivacidad" class="modal-overlay" style="display:none" onclick="if(event.target===this)this.style.display='none'">
+  <div class="modal-box" style="max-width:580px;max-height:80vh;overflow-y:auto;width:90vw">
+    <h3>Política de Privacidad</h3>
+    <p class="modal-sub">Última actualización: 2025</p>
+    <div style="font-size:14px;color:var(--texto-medio);line-height:1.7;display:flex;flex-direction:column;gap:14px">
+      <p><strong style="color:var(--texto)">1. Datos que recopilamos</strong><br>Al iniciar sesión con Google recopilamos nombre, correo y foto de perfil para gestionar favoritos. Los formularios de contacto solo se envían vía WhatsApp.</p>
+      <p><strong style="color:var(--texto)">2. Almacenamiento</strong><br>Los datos de sesión se almacenan en Firebase. Los mensajes de contacto van directamente a WhatsApp sin pasar por nuestros servidores.</p>
+      <p><strong style="color:var(--texto)">3. Sus derechos</strong><br>Puede cerrar sesión en cualquier momento. Para eliminar datos: chicohabasoficial@gmail.com.</p>
+    </div>
+    <div style="margin-top:24px"><button class="btn-primary" onclick="document.getElementById('modalPrivacidad').style.display='none'">Entendido</button></div>
+  </div>
+</div>
+
+<script type="module">
+  import "./main.js";
+
+  window.enviarContacto = function () {
+    const nombre   = document.getElementById("contactNombre").value.trim();
+    const telefono = document.getElementById("contactTelefono").value.trim();
+    const mensaje  = document.getElementById("contactMensaje").value.trim();
+
+    if (!nombre) { showToast("Por favor ingresa tu nombre", "error"); document.getElementById("contactNombre").focus(); return; }
+    if (!mensaje) { showToast("Por favor escribe tu mensaje", "error"); document.getElementById("contactMensaje").focus(); return; }
+
+    abrirWAContacto(nombre, telefono || "No proporcionado", mensaje);
+  };
+</script>
+</body>
+</html>
