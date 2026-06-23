@@ -354,27 +354,21 @@
 
 
   <!-- ── DESTACADOS ── -->
-<section class="mas-solicitados">
+<div class="carousel-container">
 
-    <h2>Más solicitados</h2>
+    <button class="carousel-btn prev" onclick="moverCarrusel(-1)">
+        ❮
+    </button>
 
-    <div class="carrusel">
-
-        <button id="anterior">
-            &#10094;
-        </button>
-
-        <div id="contenedorCarrusel">
-
-        </div>
-
-        <button id="siguiente">
-            &#10095;
-        </button>
+    <div class="destacados-grid" id="destacadosGrid">
 
     </div>
 
-</section>
+    <button class="carousel-btn next" onclick="moverCarrusel(1)">
+        ❯
+    </button>
+
+</div>
 
 
 
