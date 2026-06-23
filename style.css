@@ -1059,42 +1059,32 @@ gap:15px;
 
 }
 
-#contenedorCarrusel{
-
+.carousel-container{
 display:flex;
+align-items:center;
+gap:15px;
+}
 
+.destacados-grid{
+display:flex;
 overflow-x:auto;
-
 scroll-behavior:smooth;
-
 gap:20px;
-
-padding:20px;
-
+flex-wrap:nowrap;
+padding:10px;
 }
 
-#contenedorCarrusel::-webkit-scrollbar{
-
+.destacados-grid::-webkit-scrollbar{
 display:none;
-
 }
 
-.carrusel button{
-
-font-size:30px;
-
-border:none;
-
-background:#8B5A2B;
-
-color:white;
-
+.carousel-btn{
 width:45px;
-
 height:45px;
-
+border:none;
 border-radius:50%;
-
 cursor:pointer;
-
+font-size:22px;
+background:#17324d;
+color:white;
 }
