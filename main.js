@@ -2,43 +2,7 @@
 //  MUEBLERÍA GONZÁLEZ — SHARED JS
 //  Firebase Firestore + Auth + Favoritos + Admin
 // ============================================
-const buscador=document.getElementById("buscarProducto");
 
-const contenedor=document.getElementById("contenedorCarrusel");
-
-document
-.getElementById("anterior")
-.onclick=()=>{
-
-contenedor.scrollLeft-=350;
-
-};
-
-document
-.getElementById("siguiente")
-.onclick=()=>{
-
-contenedor.scrollLeft+=350;
-
-};
-
-setInterval(()=>{
-
-contenedor.scrollLeft+=300;
-
-if(
-
-contenedor.scrollLeft>=
-
-contenedor.scrollWidth
-
-){
-
-contenedor.scrollLeft=0;
-
-}
-
-},4000);
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
@@ -510,3 +474,18 @@ window.showToast = function (msg, type = "") {
 
 function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
 window.capitalize = capitalize;
+
+
+window.moverCarrusel=function(dir){
+
+const c=document.getElementById("destacadosGrid");
+
+c.scrollBy({
+
+left:dir*350,
+
+behavior:"smooth"
+
+});
+
+}
