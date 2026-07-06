@@ -53,7 +53,7 @@ async function esAdmin(email) {
     return false; // permission-denied u otro error → tratar como no-admin
   }
 }
-const WA_NUMBER   = "527791023240";
+const WA_NUMBER   = "5562890828";
 
 // ── Estado global ────────────────────────────
 window.MG = {
