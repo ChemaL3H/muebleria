@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes — Mueblería González</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-hero { background: var(--azul-oscuro); padding: 48px 24px 40px; text-align: center; }
+    .page-hero h1 { font-size: clamp(26px,4vw,38px); color: var(--blanco); margin-bottom: 8px; }
+    .page-hero p  { color: rgba(255,255,255,0.55); font-size: 15px; }
+
+    .faq-section { padding: 56px 24px 72px; background: var(--fondo); }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+
+    .faq-item {
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio-lg);
+      overflow: hidden;
+      box-shadow: var(--sombra-s);
+      transition: box-shadow 0.2s;
+    }
+    .faq-item.open { box-shadow: var(--sombra-m); }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 20px 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--azul-oscuro);
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--azul-indigo); }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 22px; height: 22px;
+      color: var(--dorado);
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--texto-medio);
+      line-height: 1.7;
+    }
+
+    .faq-cta {
+      max-width: 720px;
+      margin: 40px auto 0;
+      background: var(--azul-suave);
+      border-radius: var(--radio-lg);
+      padding: 28px 32px;
+      text-align: center;
+      border: 1px solid var(--azul-claro);
+    }
+    .faq-cta h3 { font-size: 18px; color: var(--azul-oscuro); margin-bottom: 8px; }
+    .faq-cta p { font-size: 13px; color: var(--texto-medio); margin-bottom: 18px; }
+  </style>
+</head>
+
+<header id="mainHeader">
+  <div class="header-inner">
+    <a href="index.html" class="header-brand">
+      <img src="logo.webp" alt="Logo" class="header-logo-img" onerror="this.style.display='none'">
+      <div class="header-brand-text">
+        <span class="brand-name">Mueblería <em>González</em></span>
+        <span class="brand-tagline">Artesanía en madera</span>
+      </div>
+    </a>
+    <div class="header-actions">
+      <a href="favoritos.html" class="header-icon-btn" title="Mis favoritos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="fav-badge" id="favBadge">0</span>
+      </a>
+      <button class="header-icon-btn" id="authBtn" onclick="toggleAuth()" title="Cuenta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<body>
+<div class="nav-overlay" id="navOverlay"></div>
+<nav class="nav-drawer" id="navDrawer">
+  <div class="drawer-header">
+    <span class="drawer-title">Mueblería <em>González</em></span>
+    <button class="drawer-close" id="drawerClose">✕</button>
+  </div>
+  <div class="drawer-nav">
+    <a href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Inicio
+    </a>
+    <button class="drawer-cat-toggle" id="drawerCatToggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Categorías
+      <svg class="cat-toggle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="drawer-submenu" id="drawerCatSubmenu">
+      <a href="index.html#roperos">Roperos</a>
+      <a href="index.html#tocadores">Tocadores</a>
+      <a href="index.html#recamaras">Recámaras</a>
+      <a href="index.html#cunas">Cunas</a>
+    </div>
+    <div class="drawer-divider"></div>
+    <a href="favoritos.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Mis Favoritos
+    </a>
+    <a href="contacto.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Contacto
+    </a>
+    <a href="preguntas.html" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Preguntas Frecuentes
+    </a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-hero">
+    <h1>Preguntas Frecuentes</h1>
+    <p>Todo lo que necesitas saber antes de comprar</p>
+  </div>
+
+  <section class="faq-section">
+    <div class="faq-list" id="faqList">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Qué tipo de madera utilizan en sus muebles?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Todos nuestros muebles están hechos con madera sólida (principalmente pino y nogal), garantizando resistencia y durabilidad. No utilizamos aglomerados ni MDF en piezas estructurales.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Hacen entregas a domicilio?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Sí, contamos con servicio de flete a domicilio en Tecámac y zonas cercanas del Estado de México e Hidalgo. El costo se cotiza según la distancia y el tamaño del pedido. Pregunta por disponibilidad y costo vía WhatsApp.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Puedo pagar en mensualidades?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Sí, ofrecemos planes de pago en mensualidades para la mayoría de nuestros productos. Las condiciones (enganche, número de pagos) se acuerdan directamente con nosotros, contáctanos para más detalles.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Los muebles vienen armados o los tengo que ensamblar?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            La mayoría de nuestros muebles se entregan completamente armados y listos para usar. En algunos casos, piezas grandes (como roperos de gran tamaño) pueden entregarse semi-armadas para facilitar el transporte, con instrucciones claras de ensamblaje final.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Tienen garantía sus muebles?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Sí, todos nuestros muebles cuentan con garantía contra defectos de fabricación. La duración y condiciones específicas se indican al momento de la compra.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Hacen muebles a medida o personalizados?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Sí, podemos fabricar muebles a medida según las necesidades y espacio del cliente. Contáctanos por WhatsApp con tus medidas y el diseño que tienes en mente para cotizar tu proyecto.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Cómo puedo guardar productos para verlos después?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Inicia sesión con tu cuenta de Google (icono en la parte superior) y toca el ícono de corazón ❤️ en cualquier producto del catálogo para agregarlo a tu lista de favoritos. Podrás verlos en la sección "Mis Favoritos" desde cualquier dispositivo.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          ¿Cómo realizo un pedido?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Solo busca el producto que te interese en nuestro catálogo y presiona el botón "Pedir por WhatsApp". Se abrirá WhatsApp con un mensaje listo para enviar que incluye el producto, precio y descripción, así nuestro equipo podrá atenderte de inmediato.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="faq-cta">
+      <h3>¿No encontraste lo que buscabas?</h3>
+      <p>Escríbenos directamente y te responderemos lo antes posible.</p>
+      <a href="contacto.html" class="btn-primary">Ir a Contacto</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <p class="brand-name-footer">Mueblería <em>González</em></p>
+      <p>Calidad artesanal y tradición familiar en cada mueble.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="favoritos.html">Mis Favoritos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#" onclick="document.getElementById('modalPrivacidad').style.display='flex'; return false;">Política de Privacidad</a></li>
+        <li><a href="mailto:chicohabasoficial@gmail.com">Soporte técnico</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Mueblería González. Todos los derechos reservados.</span>
+    <span>Sitio web por CEGA y colaboradores</span>
+  </div>
+</footer>
+
+<div id="modalPrivacidad" class="modal-overlay" style="display:none" onclick="if(event.target===this)this.style.display='none'">
+  <div class="modal-box" style="max-width:580px;max-height:80vh;overflow-y:auto;width:90vw">
+    <h3>Política de Privacidad</h3>
+    <p class="modal-sub">Última actualización: 2025</p>
+    <div style="font-size:14px;color:var(--texto-medio);line-height:1.7;display:flex;flex-direction:column;gap:14px">
+      <p><strong style="color:var(--texto)">1. Datos que recopilamos</strong><br>Al iniciar sesión con Google recopilamos nombre, correo y foto de perfil para gestionar favoritos.</p>
+      <p><strong style="color:var(--texto)">2. Almacenamiento</strong><br>Los datos de sesión se almacenan en Firebase. Los mensajes de contacto van directamente a WhatsApp.</p>
+      <p><strong style="color:var(--texto)">3. Sus derechos</strong><br>Puede cerrar sesión en cualquier momento. Para eliminar datos: chicohabasoficial@gmail.com.</p>
+    </div>
+    <div style="margin-top:24px"><button class="btn-primary" onclick="document.getElementById('modalPrivacidad').style.display='none'">Entendido</button></div>
+  </div>
+</div>
+
+<script type="module">
+  import "./main.js";
+
+  window.toggleFaq = function (btn) {
+    const item   = btn.parentElement;
+    const answer = item.querySelector(".faq-answer");
+    const isOpen = item.classList.contains("open");
+
+    // Cerrar todos
+    document.querySelectorAll(".faq-item").forEach(i => {
+      i.classList.remove("open");
+      i.querySelector(".faq-answer").style.maxHeight = null;
+    });
+
+    // Abrir el actual si no estaba abierto
+    if (!isOpen) {
+      item.classList.add("open");
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+  };
+</script>
+</body>
+</html>
